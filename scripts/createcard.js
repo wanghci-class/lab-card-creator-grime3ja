@@ -14,7 +14,7 @@ document.getElementById("preview").addEventListener("click", function() {
 });
 document.getElementById("submit").addEventListener("click", function() {
     let cards = localStorage.getItem("cards");
-    if (cards === null) {
+    if (cards == null) {
         cards = [];
     } else {
         cards = JSON.parse(cards);
@@ -27,5 +27,5 @@ document.getElementById("submit").addEventListener("click", function() {
         message: document.querySelector("#message").value
     };
     cards.push(card);
-    localStorage.setItem("writtenCards", JSON.stringify(cards));
+    localStorage.setItem("cards", JSON.stringify(cards));
 });
