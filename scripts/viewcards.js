@@ -4,16 +4,14 @@ let cardList = document.querySelector("#card-list");
 
 for (let i = 0; i < cards.length; i++) {
     let card = cards[i];
-    console.log(card);
 
     let cardView = template.content.cloneNode(true);
-    cardList.appendChild(cardView);
     
-    let titleText = cardList.querySelector(".title-text");
-    let subtitleText = cardList.querySelector(".subtitle-text");
-    let toText = cardList.querySelector(".to-text");
-    let messageText = cardList.querySelector(".title-text");
-    let fromText = cardList.querySelector(".from-text");
+    let titleText = cardView.querySelector(".title-text");
+    let subtitleText = cardView.querySelector(".subtitle-text");
+    let toText = cardView.querySelector(".to-text");
+    let messageText = cardView.querySelector(".message-text");
+    let fromText = cardView.querySelector(".from-text");
     
     titleText.textContent = card.title;
     subtitleText.textContent = card.subtitle;
@@ -21,9 +19,12 @@ for (let i = 0; i < cards.length; i++) {
     messageText.textContent = card.message;
     fromText.textContent = card.from;
     
-    // TODO rest of text spans
     let deleteBtn = cardView.querySelector(".delete-btn");
     deleteBtn.addEventListener("click", function() {
-        localStorage.removeItem(card);
+        cards.splice(i, 1);
+        localStorage.setItem("cards", JSON.stringify(cards));
+        location.reload()
     });
+    
+    cardList.appendChild(cardView);
 }
